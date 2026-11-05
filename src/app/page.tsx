@@ -1,5 +1,7 @@
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
+import { Stats } from "@/components/Stats";
+import { LogoStrip } from "@/components/LogoStrip";
 import { Competitions, Contact, Education, Experience, Leadership, Projects, Skills } from "@/components/Sections";
 import { profile } from "@/data/portfolio";
 
@@ -9,6 +11,8 @@ export default function Home() {
       <Nav />
       <main className="mx-auto w-full max-w-5xl flex-1 px-6">
         <Hero />
+        <Stats />
+        <LogoStrip />
         <Experience />
         <Projects />
         <Competitions />

@@ -1,33 +1,37 @@
 import { Section } from "./Section";
-import { Entry } from "./Entry";
+import { Reveal } from "./Reveal";
+import { ProjectCard } from "./ProjectCard";
+import { Timeline } from "./Timeline";
 import { awards, competitions, education, experience, leadership, profile, projects, skills } from "@/data/portfolio";
 
 export function Experience() {
   return (
-    <Section id="experience" title="Experience">
-      {experience.map((r) => (
-        <Entry key={r.title + r.subtitle} item={r} />
-      ))}
+    <Section id="experience" title="Experience" intro="Research and engineering roles, in labs and on product teams.">
+      <Timeline items={experience} />
     </Section>
   );
 }
 
 export function Projects() {
   return (
-    <Section id="projects" title="Projects">
-      {projects.map((p) => (
-        <Entry key={p.title} item={p} repo />
-      ))}
+    <Section id="projects" title="Projects" intro="Things I have built, with what happened and where the code is.">
+      <div className="grid items-start gap-6 md:grid-cols-2">
+        {projects.map((p, i) => (
+          <ProjectCard key={p.title} item={p} index={i} />
+        ))}
+      </div>
     </Section>
   );
 }
 
 export function Competitions() {
   return (
-    <Section id="competitions" title="Competitions">
-      {competitions.map((p) => (
-        <Entry key={p.title + p.subtitle} item={p} repo />
-      ))}
+    <Section id="competitions" title="Competitions" intro="Hackathons and data-science contests.">
+      <div className="grid items-start gap-6 md:grid-cols-2">
+        {competitions.map((p, i) => (
+          <ProjectCard key={p.title + p.subtitle} item={p} index={i} />
+        ))}
+      </div>
     </Section>
   );
 }
@@ -35,9 +39,7 @@ export function Competitions() {
 export function Leadership() {
   return (
     <Section id="leadership" title="Leadership">
-      {leadership.map((r) => (
-        <Entry key={r.title} item={r} />
-      ))}
+      <Timeline items={leadership} />
     </Section>
   );
 }
@@ -90,14 +92,17 @@ export function Education() {
 
 export function Contact() {
   return (
-    <Section id="contact" title="Contact">
-      <p className="max-w-[52ch] text-xl text-foreground">Open to research collaborations and internships.</p>
-      <ul className="mt-6 space-y-2">
-        <li><a className="text-accent underline decoration-accent/40 hover:decoration-accent" href={`mailto:${profile.email}`}>{profile.email}</a></li>
-        <li><a className="text-muted hover:text-foreground" href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}>{profile.phone}</a></li>
-        <li><a className="text-muted hover:text-foreground" href={profile.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></li>
-        <li><a className="text-muted hover:text-foreground" href={profile.links.github} target="_blank" rel="noreferrer">GitHub ↗</a></li>
-      </ul>
-    </Section>
+    <section id="contact" className="border-t border-line py-20 md:py-28">
+      <Reveal>
+        <h2 className="max-w-2xl text-balance text-4xl font-semibold tracking-tight md:text-5xl">Let&apos;s work on something together.</h2>
+        <p className="mt-4 max-w-[52ch] text-lg text-muted">Open to research collaborations and internships. The quickest way to reach me is email.</p>
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <a href={`mailto:${profile.email}`} className="rounded-md border border-foreground bg-foreground px-5 py-3 text-sm font-medium text-background transition-opacity hover:opacity-85">{profile.email}</a>
+          <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="rounded-md border border-line bg-white px-5 py-3 text-sm font-medium transition-colors hover:border-foreground">LinkedIn</a>
+          <a href={profile.links.github} target="_blank" rel="noreferrer" className="rounded-md border border-line bg-white px-5 py-3 text-sm font-medium transition-colors hover:border-foreground">GitHub</a>
+        </div>
+        <p className="mt-6 text-sm text-subtle">{profile.phone}</p>
+      </Reveal>
+    </section>
   );
 }

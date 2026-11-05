@@ -63,3 +63,50 @@ a {
     scroll-behavior: auto;
   }
 }
+
+.card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #d6d2cb;
+  box-shadow: 0 10px 30px -12px rgba(23, 23, 23, 0.14);
+}
+
+.marquee-track {
+  animation: marquee 45s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+.graph-edge {
+  stroke: var(--line);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+  animation: dash 3s linear infinite;
+}
+@keyframes dash {
+  to { stroke-dashoffset: -20; }
+}
+.graph-node {
+  animation: bob 5s ease-in-out infinite;
+}
+@keyframes bob {
+  50% { transform: translateY(-4px); }
+}
+.graph-core {
+  transform-origin: 190px 190px;
+  animation: breathe 4s ease-in-out infinite;
+}
+@keyframes breathe {
+  50% { transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .graph-edge, .graph-node, .graph-core { animation: none; }
+  .card, .card:hover { transition: none; transform: none; }
+}
