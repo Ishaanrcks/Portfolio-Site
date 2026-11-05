@@ -44,6 +44,7 @@ export const experience: Item[] = [
     title: "Research Intern",
     subtitle: "The University of Queensland, Australia",
     badge: "UQ",
+    logo: "/logos/uq.svg",
     period: "Sept 2026 – Present",
     summary:
       "I'm working with Professor Moloud Abdar on a better architecture for LLM reasoning, building on graph-based methods. I reproduced GFM-RAG and G-Reasoner, two GNN-based retrievers that connect facts across several documents, by re-running their training on a subset of the data. Now I'm testing self-distillation, BF16 training and pre-training ablations to improve retrieval accuracy while cutting training and inference cost.",
@@ -52,6 +53,7 @@ export const experience: Item[] = [
     title: "Visiting Undergraduate Researcher",
     subtitle: "The Pennsylvania State University, USA",
     badge: "PSU",
+    logo: "/logos/psu.svg",
     period: "May 2026 – Jul 2026",
     summary:
       "Under Professor Peng Liu, I worked on a security layer for multi-agent systems like OpenClaw, based on information-flow control (IFC). I co-authored a paper showing that classical Mandatory Access Control can be enforced but is impractical here: in three Discord-based case studies, policy edges grew from 8 to 42+ as agents went from 2 to 3, forcing manual routing and declassification. I contributed to HiStar++, an IFC runtime inside OpenClaw that checks labels, taint and clearance across tool calls, and owned the hook group (runBeforeToolCall) that blocks writes to lower-security objects. I'm now building a declassification orchestrator with a human-approval fallback.",
@@ -60,6 +62,7 @@ export const experience: Item[] = [
     title: "Research Intern",
     subtitle: "Indian School of Business",
     badge: "ISB",
+    logo: "/logos/isb.png",
     period: "Feb 2026 – May 2026",
     summary:
       "I designed a system that builds personalised learning paths for people moving into Digital Transformation roles. A graph in Neo4j and PostgreSQL works out the skill gap between someone's current job and their target role, using prerequisites taken from professors' curricula and mapped to Bloom's levels. A multi-agent setup then writes a step-by-step course to close that gap.",
@@ -76,6 +79,7 @@ export const experience: Item[] = [
     title: "Research Intern",
     subtitle: "Deakin University, Australia",
     badge: "DU",
+    logo: "/logos/deakin.svg",
     period: "May 2025 – Jul 2025",
     summary:
       "Under Professor Ye Zhu, I studied privacy in agent-to-agent communication. I built two MCP servers with 9 tools, a local one for file access and document search and a remote one for contacts, calendar and mail, plus Chroma-based RAG pipelines for document extraction and targeted mailing. The remote server ran over SSH and the local one over stdio, connected to Cursor, Continue, VS Code and Claude Desktop. I then attacked these setups with direct and RADE prompt injections against GPT-4o, Claude and Llama-70B, and with multi-turn obfuscated privacy attacks, documenting how the models were fooled.",
@@ -223,6 +227,7 @@ export const leadership: Item[] = [
     title: "Web Coordinator",
     subtitle: "Students' International Relations Cell, IIT Kharagpur",
     badge: "SIR",
+    logo: "/logos/iitkgp.svg",
     period: "July 2025 – Present",
     summary:
       "The Dean of International Relations nominated me, from a team of 25+ student members, to coordinate the cell's international initiatives. I rolled out a secure Django portal for the Foreign Training Program that hosts 70+ projects and manages 8,500+ applications, including 3,000+ applications to 50+ universities. The program garnered 285+ foreign internship offers (up 29.5% year on year) backed by funding of 14.5 million to 20.63 million INR. I also worked with the Office of International Relations to improve the institute's global ranking, which reached QS 215 in 2025.",
@@ -269,24 +274,6 @@ export const awards = [
   "Bronze Medal, Inter-Hall Illumination Competition, Radhakrishnan Hall.",
   "Participated in NSO Health & Fitness for 2 years.",
   "3rd School Rank in 1st Round and State Rank 39 in 2nd Round of the National Mathematics Indian Talent Competition.",
-];
-
-/** Strip of places I have worked or researched. Add `logo: "/logos/x.svg"` (in /public) to show the real logo. */
-export const orgs = [
-  { name: "The University of Queensland", badge: "UQ", logo: "" },
-  { name: "Penn State University", badge: "PSU", logo: "" },
-  { name: "Deakin University", badge: "DU", logo: "" },
-  { name: "Indian School of Business", badge: "ISB", logo: "" },
-  { name: "NephroAI / Icertis", badge: "NA", logo: "" },
-  { name: "Insteasy", badge: "IE", logo: "" },
-  { name: "IIT Kharagpur", badge: "IIT", logo: "" },
-];
-
-export const stats = [
-  { value: "4", label: "research internships" },
-  { value: "11", label: "projects and competitions" },
-  { value: "8,500+", label: "applications managed" },
-  { value: "285+", label: "foreign offers secured" },
 ];
 
 export const rotatingWords = ["reliable", "verifiable", "secure", "private"];

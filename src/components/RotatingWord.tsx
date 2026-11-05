@@ -10,7 +10,7 @@ export function RotatingWord({ words }: { words: string[] }) {
     return () => clearInterval(t);
   }, [words.length]);
   return (
-    <span data-rotate={words.join("|")} className="relative inline-block text-accent">
+    <span data-rotate={words.join("|")} className="relative block h-[1.15em] overflow-hidden text-accent">
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={words[i]}

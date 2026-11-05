@@ -32,7 +32,7 @@ export function Hero() {
             Researching at The University of Queensland
           </motion.p>
           <motion.h1 variants={item} className="mt-6 text-balance text-5xl font-semibold leading-[1.05] tracking-[-0.035em] md:text-7xl">
-            I build AI agents that are <RotatingWord words={rotatingWords} />.
+            I build AI agents that are <RotatingWord words={rotatingWords} />
           </motion.h1>
           <motion.p variants={item} className="mt-6 max-w-[48ch] text-pretty text-xl leading-relaxed text-muted">
             I&apos;m <span className="font-medium text-foreground">{profile.name}</span>, an Economics undergraduate at IIT Kharagpur. My work is about helping AI systems reason better, stay secure and private, and avoid making things up.

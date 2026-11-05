@@ -16,10 +16,10 @@ export function ProjectCard({ item, index = 0 }: { item: Item; index?: number })
         <p className="mt-3 text-[1.02rem] leading-7 text-foreground/85">{blurb ?? summary}</p>
 
         {result && (
-          <p className="mt-4 rounded-lg bg-accent/[0.08] px-3 py-2 text-sm leading-6 text-accent">
-            <span className="font-semibold">Result: </span>
-            {result}
-          </p>
+          <div className="mt-4 rounded-lg border border-line bg-background px-4 py-3">
+            <p className="text-xs font-medium uppercase tracking-wider text-subtle">Result</p>
+            <p className="mt-1 text-[0.95rem] leading-6 text-foreground">{result}</p>
+          </div>
         )}
 
         {blurb && (

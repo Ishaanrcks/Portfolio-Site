@@ -6,10 +6,10 @@ export function Timeline({ items }: { items: Item[] }) {
   return (
     <ol>
       {items.map((it, i) => (
-        <li key={it.title + it.subtitle} className="relative pl-16 pb-12 last:pb-0">
-          {i < items.length - 1 && <span className="absolute left-5 top-12 bottom-0 w-px bg-line" aria-hidden="true" />}
+        <li key={it.title + it.subtitle} className="relative pl-20 pb-12 md:pl-24 last:pb-0">
+          {i < items.length - 1 && <span className="absolute left-8 top-14 bottom-0 w-px bg-line" aria-hidden="true" />}
           <span className="absolute left-0 top-0">
-            <Badge name={it.subtitle ?? it.title} badge={it.badge} logo={it.logo} size={40} />
+            <Badge name={it.subtitle ?? it.title} badge={it.badge} logo={it.logo} />
           </span>
           <Reveal>
             <header className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
