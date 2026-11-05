@@ -6,7 +6,7 @@ export function Experience() {
   return (
     <Section id="experience" title="Experience">
       {experience.map((r) => (
-        <Entry key={r.title + r.org + r.period} title={r.title} subtitle={r.org + (r.place ? `, ${r.place}` : "")} period={r.period} objective={r.objective} points={r.points} links={r.links} />
+        <Entry key={r.title + r.subtitle} item={r} />
       ))}
     </Section>
   );
@@ -16,7 +16,7 @@ export function Projects() {
   return (
     <Section id="projects" title="Projects">
       {projects.map((p) => (
-        <Entry key={p.name} title={p.name} period={p.period} objective={p.objective} points={p.points} stack={p.stack} links={p.links} />
+        <Entry key={p.title} item={p} repo />
       ))}
     </Section>
   );
@@ -26,7 +26,7 @@ export function Competitions() {
   return (
     <Section id="competitions" title="Competitions">
       {competitions.map((p) => (
-        <Entry key={p.name} title={p.name} period={p.period} objective={p.objective} points={p.points} />
+        <Entry key={p.title + p.subtitle} item={p} repo />
       ))}
     </Section>
   );
@@ -36,7 +36,7 @@ export function Leadership() {
   return (
     <Section id="leadership" title="Leadership">
       {leadership.map((r) => (
-        <Entry key={r.title} title={r.title} subtitle={r.org} period={r.period} objective={r.objective} points={r.points} />
+        <Entry key={r.title} item={r} />
       ))}
     </Section>
   );
@@ -45,14 +45,20 @@ export function Leadership() {
 export function Skills() {
   return (
     <Section id="skills" title="Skills">
-      <dl className="space-y-8">
+      <div className="space-y-8">
         {skills.map((g) => (
           <div key={g.group}>
-            <dt className="text-sm text-subtle">{g.group}</dt>
-            <dd className="mt-2 max-w-[68ch] leading-relaxed text-muted">{g.items.join(", ")}</dd>
+            <h3 className="text-sm font-medium text-subtle">{g.group}</h3>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {g.items.map((i) => (
+                <li key={i} className="rounded-full bg-chip px-3 py-1 text-sm text-muted">
+                  {i}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
-      </dl>
+      </div>
     </Section>
   );
 }

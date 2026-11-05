@@ -6,23 +6,16 @@
 
 export type Link = { label: string; href: string };
 
-export type Role = {
+/** One piece of work, written as a short paragraph rather than CV bullets. */
+export type Item = {
   title: string;
-  org: string;
-  place?: string;
+  subtitle?: string; // organisation / event
   period: string;
-  objective: string;
-  points: string[];
-  links?: Link[]; // TODO: paper / repo / org links
-};
-
-export type Project = {
-  name: string;
-  period: string;
-  objective: string;
-  points: string[];
-  stack?: string[]; // TODO: fill in tech stack chips
-  links?: Link[]; // TODO: GitHub / demo / write-up links
+  summary: string; // what I actually did, in plain language
+  result?: string; // the outcome, if there is a measurable one
+  stack?: string[];
+  github?: string; // TODO: repo URL. Empty renders a "link soon" button.
+  links?: Link[]; // extra links (paper, demo, write-up)
 };
 
 export const profile = {
@@ -42,253 +35,174 @@ export const profile = {
   photo: "", // TODO: put image in /public and set e.g. "/me.jpg" (shown in hero when set)
 };
 
-export const experience: Role[] = [
+export const experience: Item[] = [
   {
     title: "Research Intern",
-    org: "The University of Queensland",
-    place: "Australia",
+    subtitle: "The University of Queensland, Australia",
     period: "Sept 2026 – Present",
-    objective:
-      "Design a better architecture inspired by graph-based LLM reasoning methods, under Professor Moloud Abdar.",
-    points: [
-      "Reproduced GFM-RAG and G-Reasoner, GNN-based multi-hop retrievers for LLM reasoning, re-running training on a subset of data.",
-      "Exploring self-distillation, BF16 training and pre-training ablations to boost retrieval accuracy and cut training/inference cost.",
-    ],
+    summary:
+      "I'm working with Professor Moloud Abdar on a better architecture for LLM reasoning, building on graph-based methods. I reproduced GFM-RAG and G-Reasoner, two GNN-based retrievers that connect facts across several documents, by re-running their training on a subset of the data. Now I'm testing self-distillation, BF16 training and pre-training ablations to improve retrieval accuracy while cutting training and inference cost.",
   },
   {
     title: "Visiting Undergraduate Researcher",
-    org: "The Pennsylvania State University",
-    place: "USA",
+    subtitle: "The Pennsylvania State University, USA",
     period: "May 2026 – Jul 2026",
-    objective:
-      "Design and prototype an IFC-based, system-level security protocol for multi-agent systems like OpenClaw, under Professor Peng Liu.",
-    points: [
-      "Co-authored a paper showing classical Mandatory Access Control is enforceable but impractical for multi-agent OpenClaw deployments.",
-      "Built three Discord-based BLP case studies mapping subjects, objects and security labels; policy edges grew from 8 to 42+ (2 to 3 agents), forcing manual routing and declassification.",
-      "Contributed to HiStar++, an in-process IFC runtime and isolated broker process in OpenClaw enforcing label, taint and clearance checks via IPC across tool calls.",
-      "Owned the tool-to-object group (runBeforeToolCall) of four hook groups, enforcing No-Write-Down via block/approval verdicts.",
-      "Implementing an IFC declassification orchestrator that finds and applies downgrade gates from L_in to L_out, with human-approval fallback.",
-    ],
+    summary:
+      "Under Professor Peng Liu, I worked on a security layer for multi-agent systems like OpenClaw, based on information-flow control (IFC). I co-authored a paper showing that classical Mandatory Access Control can be enforced but is impractical here: in three Discord-based case studies, policy edges grew from 8 to 42+ as agents went from 2 to 3, forcing manual routing and declassification. I contributed to HiStar++, an IFC runtime inside OpenClaw that checks labels, taint and clearance across tool calls, and owned the hook group (runBeforeToolCall) that blocks writes to lower-security objects. I'm now building a declassification orchestrator with a human-approval fallback.",
   },
   {
     title: "Research Intern",
-    org: "Indian School of Business",
+    subtitle: "Indian School of Business",
     period: "Feb 2026 – May 2026",
-    objective:
-      "Architect a system that generates personalized learning trajectories for career transitions into Digital Transformation roles.",
-    points: [
-      "Designed a Directed Acyclic Graph in Neo4j and PostgreSQL to compute the skill delta between a user's current occupation and target role.",
-      "Extracted prerequisites and skill upgrades from professor curricula, mapping Bloom's progressions into deterministic routing edges.",
-      "Architected a multi-agent system and schema to autonomously generate structured, step-by-step transition courses bridging the user's knowledge gap.",
-    ],
+    summary:
+      "I designed a system that builds personalised learning paths for people moving into Digital Transformation roles. A graph in Neo4j and PostgreSQL works out the skill gap between someone's current job and their target role, using prerequisites taken from professors' curricula and mapped to Bloom's levels. A multi-agent setup then writes a step-by-step course to close that gap.",
   },
   {
     title: "Applied AI Engineering Intern",
-    org: "NephroAI / Icertis",
-    place: "Remote",
+    subtitle: "NephroAI / Icertis, Remote",
     period: "Mar 2026 – May 2026",
-    objective:
-      "Automate and accelerate DevOps triage by deploying a multi-agent AI system for bug analysis.",
-    points: [
-      "Architected a multi-agent DevOps triage system using CrewAI / AutoGen and FastAPI to auto-resolve Azure DevOps support tickets.",
-      "Engineered GitHub MCP tools, bypassing 30 req/min rate limits via prompt-level API batching and SSE timeout handling.",
-      "Designed vector retrieval pipelines on Azure AI Search to auto-resolve recurring tickets from history, reducing LLM API costs.",
-      "Enforced zero-hallucination guardrails by isolating Planner, Explorer and Synthesizer agent responsibilities across the pipeline.",
-    ],
+    summary:
+      "I built a multi-agent system (CrewAI / AutoGen, FastAPI) that triages Azure DevOps support tickets and resolves them automatically. I engineered GitHub MCP tools that work around a 30 requests-per-minute rate limit by batching calls in the prompt, and handled SSE timeouts. Retrieval on Azure AI Search lets it reuse past fixes for recurring tickets, which lowers LLM costs, and separate Planner, Explorer and Synthesizer agents keep answers grounded so the system does not hallucinate.",
   },
   {
     title: "Research Intern",
-    org: "Deakin University",
-    place: "Australia",
+    subtitle: "Deakin University, Australia",
     period: "May 2025 – Jul 2025",
-    objective:
-      "Safeguard privacy in agent-to-agent communication, under Professor Ye Zhu.",
-    points: [
-      "Built two MCP servers with 9 tools: a local server for file access and doc search, and a remote server for contacts, calendar and mailing.",
-      "Developed Mail and File Execution MCP tools and Chroma-based RAG pipelines to automate document extraction and targeted mailing.",
-      "Deployed the remote server via SSH (Streamable HTTP / SSE) and ran the local one over stdio, connected to Cursor, Continue, VSCode and Claude Desktop.",
-      "Demonstrated MCE, RAC and CT via direct and RADE attacks against GPT-4o, Claude and Llama-70B, documenting how injections fooled models.",
-      "Executed multi-turn obfuscated privacy attacks on remote GPU LLMs via SSH; traced weaknesses in tool-augmented pipelines and simulated adversarial queries on a vector-based retrieval pipeline.",
-    ],
+    summary:
+      "Under Professor Ye Zhu, I studied privacy in agent-to-agent communication. I built two MCP servers with 9 tools, a local one for file access and document search and a remote one for contacts, calendar and mail, plus Chroma-based RAG pipelines for document extraction and targeted mailing. The remote server ran over SSH and the local one over stdio, connected to Cursor, Continue, VS Code and Claude Desktop. I then attacked these setups with direct and RADE prompt injections against GPT-4o, Claude and Llama-70B, and with multi-turn obfuscated privacy attacks, documenting how the models were fooled.",
   },
   {
     title: "Full Stack Developer",
-    org: "Insteasy",
+    subtitle: "Insteasy",
     period: "June 2024 – Nov 2024",
-    objective:
-      "Contributed to Insteasy, a SaaS platform enabling end-to-end academic management for educational institutions.",
-    points: [
-      "Tested Django APIs using Postman and managed user creation directly through the Heroku Admin dashboard.",
-      "Built Django models and a forum where students post doubts with descriptions, attachments and academic tags.",
-      "Built and tested REST APIs with Django, enabling tutors to fetch subjects and questions for custom or auto-generated quizzes.",
-      "Designed a notice-board feature for tutors to share updates, filtered by course, batch or individual students.",
-    ],
+    summary:
+      "I worked on the backend of Insteasy, a SaaS platform for managing academic institutions. I built the Django models for a forum where students post doubts with attachments and tags, REST APIs that let tutors pull subjects and questions to create custom or automatic quizzes, and a notice board with filters by course, batch or student. I tested the APIs with Postman.",
   },
 ];
 
-export const projects: Project[] = [
+export const projects: Item[] = [
   {
-    name: "VeriRAG",
+    title: "VeriRAG",
+    subtitle: "Self-verifying document Q&A",
     period: "Oct 2026",
-    objective:
-      "A self-verifying document-QA system that checks every generated claim against its sources and abstains instead of hallucinating.",
-    points: [
-      "Built a LangGraph RAG pipeline with hybrid dense + BM25 retrieval (top-20 each), RRF-fused and reranked to 8 chunks.",
-      "Designed a two-gate verification critic (coverage, groundedness) using a DeBERTa NLI model, with bounded regeneration and abstention.",
-      "Built PyMuPDF-based table extraction storing each table as a certifiable markdown chunk, recovering 78 chunks across 6 papers, plus vision captions for embedded figures.",
-      "Evaluated on MMLongBench-Doc with a stratified 59-question set: zero hallucinations across answered queries, with abstention on unanswerable ones.",
-    ],
+    summary:
+      "A document question-answering system that checks every claim against its sources and says it doesn't know instead of guessing. It retrieves with dense search and BM25, fuses and reranks the results to 8 chunks, then a two-gate critic (coverage and groundedness, using a DeBERTa NLI model) either approves the answer, regenerates it a bounded number of times, or abstains. PyMuPDF turns tables into markdown chunks (78 across 6 papers) and figures get vision captions.",
+    result: "On a stratified 59-question MMLongBench-Doc set: zero hallucinations on answered questions, and abstention on the unanswerable ones.",
     stack: ["LangGraph", "BM25", "DeBERTa NLI", "PyMuPDF"],
-    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
+    github: "", // TODO
   },
   {
-    name: "Kaggle: CommonLit Evaluate Student Summaries",
-    period: "Dec 2025",
-    objective:
-      "A hybrid NLP pipeline that scores student summaries on content accuracy and wording quality.",
-    points: [
-      "Engineered lexical, spelling, length, source-overlap and readability features; LightGBM baseline at 0.577 / 0.590 MCRMSE.",
-      "Benchmarked BERT, RoBERTa and DeBERTa-v3 with prompt-grouped CV; DeBERTa-v3 (pre-trained on Feedback-ELL) scored best.",
-      "Fine-tuned DeBERTa with mean pooling of the last 4 hidden layers, cutting MCRMSE to 0.46; stacked out-of-fold predictions with features in LightGBM, reaching 0.493 / 0.508.",
-    ],
-    stack: ["LightGBM", "DeBERTa-v3"],
-    links: [{ label: "GitHub", href: "" }], // TODO: add href
-  },
-  {
-    name: "Multi-Agent Academic Research System",
+    title: "Multi-Agent Academic Research System",
     period: "June 2026",
-    objective:
-      "A reliable multi-agent system for autonomous source discovery and strict factual verification.",
-    points: [
-      "Developed a LangGraph multi-agent workflow with Llama-3.3 for orchestration and report generation, and Gemini 1.5 for pre-processing and document parsing.",
-      "Engineered a Critic Agent to find missing links and knowledge gaps, generate better queries or trigger human-in-the-loop fallbacks.",
-      "Integrated the ArXiv API and a local ChromaDB vector database to pull facts from research papers and user documents.",
-    ],
+    summary:
+      "A research assistant that finds sources and verifies facts on its own. A LangGraph workflow uses Llama-3.3 to orchestrate and write the report and Gemini 1.5 to parse documents. A Critic agent looks for missing links and knowledge gaps, then writes better queries or hands the question to a human. Facts come from the ArXiv API and a local ChromaDB store of papers and user documents.",
     stack: ["LangGraph", "Llama-3.3", "Gemini 1.5", "ChromaDB", "ArXiv API"],
-    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
+    github: "", // TODO
   },
   {
-    name: "Hospital Emergency Room Forecasting",
+    title: "Hospital Emergency Room Forecasting",
     period: "Sept 2025 – Present",
-    objective:
-      "A time-series forecasting pipeline predicting daily required emergency-room patient volumes.",
-    points: [
-      "Extracted temporal signals, engineering cyclical calendar encodings, historical lag features and 30-day rolling statistics.",
-      "Tuned XGBoost and LightGBM via Randomized SearchCV (30 iterations) with 5-fold TimeSeriesSplit validation.",
-      "Architected LSTM and GRU models with a 30-day lookback window alongside SARIMA baselines, yielding a test MAPE of 21.1%.",
-    ],
+    summary:
+      "A forecasting pipeline that predicts how many patients an emergency room will see each day. I built cyclical calendar features, lag features and 30-day rolling statistics, tuned XGBoost and LightGBM with randomized search and time-series cross-validation, and compared LSTM and GRU models (30-day lookback) against SARIMA baselines.",
+    result: "Test MAPE of 21.1%.",
     stack: ["XGBoost", "LightGBM", "LSTM / GRU", "SARIMA"],
-    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
+    github: "", // TODO
   },
   {
-    name: "Predicting State of Manufacturing Units",
+    title: "Predicting State of Manufacturing Units",
     period: "Jan 2025",
-    objective:
-      "Forecast manufacturing-unit risk states from temporal sensor data for maintenance and anomaly detection.",
-    points: [
-      "Processed complex sensor data and used EDA to uncover anomalies within critical 10th-minute reading intervals.",
-      "Trained RNN, CNN, LSTM and AutoGluon models to predict risk in 10-minute intervals.",
-      "Ensembled the best models for stability, reaching a test accuracy of 0.872.",
-    ],
+    summary:
+      "Predicts the risk state of manufacturing units from sensor readings taken every 10 minutes, for maintenance and anomaly detection. Exploratory analysis showed that the 10th-minute readings held the key anomalies. I trained RNN, CNN, LSTM and AutoGluon models and ensembled the best ones for stability.",
+    result: "Test accuracy of 0.872.",
     stack: ["RNN / CNN / LSTM", "AutoGluon"],
-    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
-  },
-  // TODO: add more projects by copying this template:
-  // {
-  //   name: "Project name",
-  //   period: "Mon YYYY",
-  //   objective: "One sentence on what it is.",
-  //   points: ["What you built / measured."],
-  //   stack: ["Tech"],
-  //   links: [{ label: "GitHub", href: "https://github.com/Ishaanrcks/..." }],
-  // },
-];
-
-export const competitions: Project[] = [
-  {
-    name: "Voice-Native Hospital Call Agent (DataForge)",
-    period: "Sept 2026",
-    objective:
-      "A low-latency voice agent that handles live hospital calls end to end, with clean barge-in and graceful failure recovery.",
-    points: [
-      "Built a LangGraph voice agent with 24 tools over a 29-table SQLite DB, logging per-turn latency, tool calls and end-of-call summaries.",
-      "Engineered turn-taking with Silero VAD, an adaptive noise gate and token-fenced barge-in that cancels stale LLM and tool-call output.",
-      "Designed failure handling so calls never go silent: on LLM failures, apologise, save context for same-day callback and end gracefully.",
-      "Deployed a demo on AWS EC2 (FastAPI WebSocket, Caddy HTTPS), a browser-callable bridge designed to switch to Twilio later.",
-    ],
-    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
+    github: "", // TODO
   },
   {
-    name: "General Championship Data Analytics",
-    period: "Gold, Feb 2026 · Silver, Mar 2025",
-    objective: "Technology Students Gymkhana, IIT Kharagpur.",
-    points: [
-      "Gold (Feb 2026): built an AI copilot that converts natural language into SQL and charts, using a framework-free ReAct agent and schema-aware planner over a FastMCP tool server querying a 9-table PostgreSQL star schema.",
-      "Built a KPI compiler/DSL turning natural-language metrics into JSON rules executed as parameterized SQL, eliminating metric hallucination.",
-      "Deployed the FastAPI and React SPA stack across EC2 instances with RDS PostgreSQL, enforcing CTE multi-tenant isolation for 10,000+ client records; used asyncio.gather to cut multi-step query latency.",
-      "Silver (Mar 2025): optimized ElectroMart's marketing budget with EDA, sentiment analysis and ROI modeling; used XGBoost/MMM (MIDAS-ARMA, H.O.V.A.) to track revenue lag and boost gains by 19.8%.",
-      "Built Django and Next.js dashboards with KPI visuals and budget sliders, plus a natural-language query agent for EDA insights.",
-    ],
-    links: [{ label: "GitHub", href: "" }], // TODO: add href
+    title: "Kaggle: CommonLit, Evaluate Student Summaries",
+    period: "Dec 2025",
+    summary:
+      "A hybrid NLP pipeline that scores student summaries on content accuracy and wording quality. I started with a LightGBM baseline on linguistic features (0.577 MCRMSE), benchmarked BERT, RoBERTa and DeBERTa-v3 with prompt-grouped cross-validation, fine-tuned DeBERTa-v3 with mean pooling over its last 4 layers, then stacked its predictions with the features in LightGBM.",
+    result: "Fine-tuning cut MCRMSE to 0.46; the final stacked model scored 0.493 / 0.508.",
+    stack: ["LightGBM", "DeBERTa-v3"],
+    github: "", // TODO
   },
   {
-    name: "Amazon ML Challenge 2025",
-    period: "Oct 2025",
-    objective:
-      "All India ML hackathon: predict marketplace product prices from catalogue text and images (multimodal regression, SMAPE).",
-    points: [
-      "Built a TF-IDF and regex baseline extracting quantities and units, reaching 60.69% SMAPE with 5-fold GroupKFold.",
-      "Replaced BERT with EmbeddingGemma text embeddings to better capture numeric cues, abbreviations and semi-structured specs.",
-      "Integrated CLIP / SigLIP 2-Giant image embeddings with cross-attention to align images and text; SigLIP's sigmoid loss removed batch-wise scale drift.",
-      "Designed dual-path cross-attention fusion with a 3-layer FFN head trained directly on SMAPE, reaching 48.67% / 53.24%.",
-    ],
-    links: [{ label: "GitHub", href: "" }], // TODO: add href
-  },
-  {
-    name: "Kaggle: NLP with Disaster Tweets",
+    title: "Kaggle: NLP with Disaster Tweets",
     period: "Apr 2025 – Aug 2025",
-    objective:
-      "Classify tweets as related or unrelated to real disasters.",
-    points: [
-      "TF-IDF and n-gram features (bigrams most informative) with tree-based models reached 74.26% / 75.42% accuracy.",
-      "Improved preprocessing via GloVe and FastText vocabulary-coverage analysis of out-of-vocabulary words.",
-      "Fine-tuned a BERT-based model with Adam and cross-entropy loss, reaching 81.14% / 82.42% accuracy.",
-    ],
-    links: [{ label: "GitHub", href: "" }], // TODO: add href
+    summary:
+      "Classifies tweets as about a real disaster or not. TF-IDF and n-gram features with tree-based models (bigrams were the most informative) reached about 75% accuracy. GloVe and FastText vocabulary checks guided the cleaning, and a fine-tuned BERT model trained with Adam and cross-entropy loss did best.",
+    result: "81.14% / 82.42% accuracy.",
+    stack: ["TF-IDF", "BERT", "GloVe / FastText"],
+    github: "", // TODO
+  },
+  // TODO: add more projects by copying an item above.
+];
+
+export const competitions: Item[] = [
+  {
+    title: "Voice-Native Hospital Call Agent",
+    subtitle: "DataForge",
+    period: "Sept 2026",
+    summary:
+      "A voice agent that handles live hospital calls end to end. It is a LangGraph agent with 24 tools over a 29-table SQLite database, and it logs per-turn latency, tool calls and an end-of-call summary. Silero VAD, an adaptive noise gate and token-fenced barge-in let callers interrupt cleanly by cancelling stale model and tool output. If the LLM fails, the call never goes silent: the agent apologises, saves context for a same-day callback and ends gracefully. A demo runs on AWS EC2 (FastAPI WebSocket, Caddy HTTPS) and is designed to switch to Twilio later.",
+    stack: ["LangGraph", "Silero VAD", "FastAPI", "SQLite", "AWS EC2"],
+    github: "", // TODO
   },
   {
-    name: "Intrahall Data Analytics Competition",
+    title: "General Championship Data Analytics",
+    subtitle: "Technology Students Gymkhana, Gold",
+    period: "Feb 2026",
+    summary:
+      "An AI copilot that turns plain-English questions into SQL and charts. A framework-free ReAct agent with a schema-aware planner calls a FastMCP tool server over a 9-table PostgreSQL star schema. A KPI compiler turns natural-language metrics into JSON rules that run as parameterised SQL, so numbers stay consistent and are never invented. It is deployed on EC2 with RDS PostgreSQL, isolates tenants with CTEs across 10,000+ client records, and runs SQL, KPI and chart tasks in parallel with asyncio.gather.",
+    result: "Gold.",
+    stack: ["FastAPI", "React", "PostgreSQL", "FastMCP", "AWS"],
+    github: "", // TODO
+  },
+  {
+    title: "General Championship Data Analytics",
+    subtitle: "Technology Students Gymkhana, Silver",
+    period: "Mar 2025",
+    summary:
+      "The task was to optimise ElectroMart's marketing budget from its past spending and its effect on revenue. I did exploratory analysis, sentiment analysis and ROI modelling to define useful KPIs, then used Python, Pandas and XGBoost / MMM (MIDAS-ARMA, H.O.V.A.) to track revenue lag. I built Django and Next.js dashboards with KPI visuals, budget sliders and a natural-language query agent that turns questions into code for EDA and visual reports.",
+    result: "Gains boosted by 19.8%. Silver.",
+    stack: ["XGBoost", "MMM", "Django", "Next.js"],
+    github: "", // TODO
+  },
+  {
+    title: "Amazon ML Challenge 2025",
+    subtitle: "All India ML Hackathon",
+    period: "Oct 2025",
+    summary:
+      "Predict marketplace product prices from catalogue text and images (multimodal regression, scored by SMAPE). A TF-IDF and regex baseline that pulled out quantities and units gave 60.69% SMAPE. I replaced BERT with EmbeddingGemma text embeddings, added SigLIP 2-Giant image embeddings (its sigmoid loss removed batch-wise scale drift), and fused the two with dual-path cross-attention and a 3-layer FFN head trained directly on SMAPE.",
+    result: "48.67% / 53.24% SMAPE (lower is better).",
+    stack: ["EmbeddingGemma", "SigLIP 2", "PyTorch"],
+    github: "", // TODO
+  },
+  {
+    title: "Intrahall Data Analytics Competition",
+    subtitle: "Radhakrishnan Hall",
     period: "Feb 2025",
-    objective:
-      "Radhakrishnan Hall: forecast unit risk in automated manufacturing from temporal sensor data.",
-    points: [
-      "Reached 86.9% accuracy predicting unit risk from 10-minute sequences using deep learning and boosting.",
-      "Used Random Forest and Decision Trees for feature importance, identifying sensors with significant variance in the final seconds.",
-      "Designed LSTM, GRU and hybrid models and visualized sensor-wise variance over time for model compression.",
-    ],
-    links: [{ label: "GitHub", href: "" }], // TODO: add href
+    summary:
+      "Forecast unit risk in automated manufacturing from sensor time series. Deep learning and boosting on 10-minute sequences did the predicting. Random Forest and Decision Trees showed which sensors mattered most, with significant variance in the final seconds, and LSTM, GRU and hybrid models learned the temporal patterns.",
+    result: "86.9% accuracy.",
+    stack: ["LSTM / GRU", "Random Forest"],
+    github: "", // TODO
   },
 ];
 
-export const leadership: Role[] = [
+export const leadership: Item[] = [
   {
     title: "Campus Director",
-    org: "Hult Prize, IIT Kharagpur",
+    subtitle: "Hult Prize, IIT Kharagpur",
     period: "TODO: add dates",
-    objective: "TODO: one line on what you led as Campus Director.",
-    points: [],
+    summary: "TODO: two or three sentences on what you led as Campus Director.",
   },
   {
     title: "Web Coordinator",
-    org: "Students' International Relations Cell, IIT Kharagpur",
+    subtitle: "Students' International Relations Cell, IIT Kharagpur",
     period: "July 2025 – Present",
-    objective:
-      "Nominated by the Dean of International Relations from a team of 25+ student members to oversee international initiatives.",
-    points: [
-      "Rolled out a secure Django-based portal for the Foreign Training Program, hosting 70+ projects and managing 8500+ applications (streamlining 3000+ applications to 50+ universities).",
-      "Garnered 285+ foreign internship offers (29.5% YoY) from renowned universities, backed by funding of 14.5 million / 20.63 million INR.",
-      "Worked with the Office of International Relations to improve the institute's global ranking, achieving QS rank 215 in 2025.",
-    ],
+    summary:
+      "The Dean of International Relations nominated me, from a team of 25+ student members, to coordinate the cell's international initiatives. I rolled out a secure Django portal for the Foreign Training Program that hosts 70+ projects and manages 8,500+ applications, including 3,000+ applications to 50+ universities. The program garnered 285+ foreign internship offers (up 29.5% year on year) backed by funding of 14.5 million to 20.63 million INR. I also worked with the Office of International Relations to improve the institute's global ranking, which reached QS 215 in 2025.",
   },
 ];
 

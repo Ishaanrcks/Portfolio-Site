@@ -23,11 +23,11 @@ export function Hero() {
         <div className="max-w-2xl">
           <motion.h1
             variants={item}
-            className="font-display text-balance text-6xl leading-[1] tracking-[-0.02em] md:text-8xl"
+            className="text-balance text-5xl font-semibold leading-[1.05] tracking-[-0.035em] md:text-7xl"
           >
             {profile.name}
           </motion.h1>
-          <motion.p variants={item} className="mt-6 max-w-[52ch] text-pretty text-xl leading-relaxed text-foreground">
+          <motion.p variants={item} className="mt-6 max-w-[52ch] text-pretty text-2xl font-medium leading-snug tracking-tight text-foreground">
             {profile.headline}
           </motion.p>
           <motion.p variants={item} className="mt-3 max-w-[52ch] text-pretty text-muted">
