@@ -85,7 +85,7 @@ export function Education() {
 export function Contact() {
   return (
     <Section id="contact" title="Contact">
-      <p className="max-w-[52ch] text-xl text-muted">Open to research collaborations and internships.</p>
+      <p className="max-w-[52ch] text-xl text-foreground">Open to research collaborations and internships.</p>
       <ul className="mt-6 space-y-2">
         <li><a className="text-accent underline decoration-accent/40 hover:decoration-accent" href={`mailto:${profile.email}`}>{profile.email}</a></li>
         <li><a className="text-muted hover:text-foreground" href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}>{profile.phone}</a></li>

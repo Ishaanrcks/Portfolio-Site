@@ -9,7 +9,7 @@ const items = [
 
 export function Nav() {
   return (
-    <header className="sticky top-0 z-20 border-b border-line bg-background/85 backdrop-blur-md">
+    <header className="sticky top-0 z-20 border-b border-line bg-background/90 backdrop-blur-md">
       <nav aria-label="Primary" className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
         <a href="#top" className="text-sm font-medium tracking-tight">
           {profile.name}

@@ -10,7 +10,7 @@ export function Section({
   return (
     <section id={id} className="border-t border-line py-16 md:py-24">
       <div className="grid gap-8 md:grid-cols-[10rem_1fr] md:gap-12">
-        <h2 className="text-xl font-medium tracking-tight md:sticky md:top-24 md:self-start">
+        <h2 className="font-display text-3xl tracking-tight md:sticky md:top-24 md:self-start">
           {title}
         </h2>
         <div>{children}</div>

@@ -23,11 +23,11 @@ export function Hero() {
         <div className="max-w-2xl">
           <motion.h1
             variants={item}
-            className="text-balance text-5xl font-semibold leading-[1.05] tracking-[-0.035em] md:text-6xl"
+            className="font-display text-balance text-6xl leading-[1] tracking-[-0.02em] md:text-8xl"
           >
             {profile.name}
           </motion.h1>
-          <motion.p variants={item} className="mt-6 max-w-[52ch] text-pretty text-xl leading-relaxed text-muted">
+          <motion.p variants={item} className="mt-6 max-w-[52ch] text-pretty text-xl leading-relaxed text-foreground">
             {profile.headline}
           </motion.p>
           <motion.p variants={item} className="mt-3 max-w-[52ch] text-pretty text-muted">
@@ -36,19 +36,19 @@ export function Hero() {
           <motion.div variants={item} className="mt-8 flex flex-wrap gap-3 text-sm">
             <a
               href={`mailto:${profile.email}`}
-              className="rounded-md bg-foreground px-4 py-2 font-medium text-background transition-opacity hover:opacity-85"
+              className="rounded-md bg-foreground px-4 py-2 font-medium text-background transition-opacity hover:opacity-80"
             >
               Get in touch
             </a>
             {profile.links.resume && (
-              <a href={profile.links.resume} className="rounded-md border border-line px-4 py-2 transition-colors hover:border-subtle">
+              <a href={profile.links.resume} className="rounded-md border border-line px-4 py-2 transition-colors hover:border-foreground">
                 Resume
               </a>
             )}
-            <a href={profile.links.github} target="_blank" rel="noreferrer" className="rounded-md border border-line px-4 py-2 transition-colors hover:border-subtle">
+            <a href={profile.links.github} target="_blank" rel="noreferrer" className="rounded-md border border-line px-4 py-2 transition-colors hover:border-foreground">
               GitHub
             </a>
-            <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="rounded-md border border-line px-4 py-2 transition-colors hover:border-subtle">
+            <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="rounded-md border border-line px-4 py-2 transition-colors hover:border-foreground">
               LinkedIn
             </a>
           </motion.div>

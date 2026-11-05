@@ -27,9 +27,9 @@ export type Project = {
 
 export const profile = {
   name: "Ishan Yash Patel",
-  headline: "Economics undergraduate at IIT Kharagpur building and researching LLM agents.",
+  headline: "I build and research AI agents.",
   summary:
-    "Research and engineering across graph-based LLM reasoning, multi-agent systems, agent security and privacy, and applied ML.",
+    "Economics undergraduate at IIT Kharagpur. My work is about helping AI systems reason better, stay secure and private, and avoid making things up.",
   degree: "B.S. (Hons.) / M.S. in Economics",
   department: "Department of Economics, Indian Institute of Technology Kharagpur",
   email: "ishanyash1919@gmail.com",
