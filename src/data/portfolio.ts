@@ -36,7 +36,7 @@ export const profile = {
   phone: "+91-8005701448",
   links: {
     github: "https://github.com/Ishaanrcks",
-    linkedin: "https://www.linkedin.com/in/", // TODO: add your profile slug, e.g. /in/your-handle
+    linkedin: "https://www.linkedin.com/in/ishan-yash-79219b186/",
     resume: "/resume.pdf", // TODO: drop your resume at public/resume.pdf
   },
   photo: "", // TODO: put image in /public and set e.g. "/me.jpg" (shown in hero when set)

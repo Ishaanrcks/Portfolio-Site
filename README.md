@@ -12,9 +12,7 @@ npm run build
 All content lives in `src/data/portfolio.ts`. Components only render it.
 
 ### TODO (needs you)
-- `profile.links.linkedin`: set your full profile URL (the one provided ended at `/in/`)
 - `profile.photo`: drop an image in `/public`, set e.g. `"/me.jpg"` (hero shows it automatically)
-- Resume: put your PDF at `public/resume.pdf` (the Resume button already points there)
 - Project / competition `links`: set each `href` (empty ones render as "link soon")
 - Hult Prize Campus Director: fill in dates and description in `leadership`
 - Add more projects by copying the commented template at the bottom of `projects`
