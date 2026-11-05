@@ -1,5 +1,6 @@
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
+import { Badge } from "./Badge";
 import { ContactForm } from "./ContactForm";
 import { ProjectCard } from "./ProjectCard";
 import { Timeline } from "./Timeline";
@@ -68,25 +69,38 @@ export function Skills() {
 
 export function Education() {
   return (
-    <Section id="education" title="Education & awards">
-      <ul className="space-y-6">
-        {education.map((e) => (
-          <li key={e.school} className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-            <div>
-              <p className="font-medium">{e.school}</p>
-              <p className="text-muted">{e.detail}</p>
-            </div>
-            <p className="tnum shrink-0 font-mono text-sm text-subtle">{e.period}</p>
-          </li>
-        ))}
-      </ul>
-      <ul className="mt-12 max-w-[68ch] space-y-2.5 text-[0.95rem] leading-relaxed text-muted">
-        {awards.map((a) => (
-          <li key={a} className="relative pl-5 before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2.5 before:bg-subtle">
-            {a}
-          </li>
-        ))}
-      </ul>
+    <Section id="education" title="Education & awards" intro="Where I studied, and a few things I'm proud of.">
+      <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+        <Reveal>
+          <h3 className="text-sm font-medium text-subtle">Where I studied</h3>
+          <ul className="mt-5 divide-y divide-line border-y border-line">
+            {education.map((e) => (
+              <li key={e.school} className="flex items-center gap-4 py-5">
+                <Badge name={e.school} badge={e.badge} logo={e.logo} />
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold leading-snug">{e.school}</p>
+                  <p className="text-sm text-muted">{e.detail}</p>
+                </div>
+                <p className="tnum shrink-0 text-sm text-subtle">{e.period}</p>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <h3 className="text-sm font-medium text-subtle">Awards and achievements</h3>
+          <ul className="mt-5 divide-y divide-line border-y border-line">
+            {awards.map((a) => (
+              <li key={a.title} className="py-5">
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className="font-semibold leading-snug">{a.title}</p>
+                  <span className="shrink-0 rounded-full bg-chip px-2.5 py-0.5 text-xs font-medium text-muted">{a.tag}</span>
+                </div>
+                <p className="mt-1.5 text-[0.95rem] leading-6 text-muted">{a.text}</p>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </div>
     </Section>
   );
 }

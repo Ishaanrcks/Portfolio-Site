@@ -260,20 +260,43 @@ export const skills = [
 
 export const education = [
   {
-    school: "Indian Institute of Technology Kharagpur",
-    detail: "B.S. (Hons.) / M.S. in Economics",
+    school: "IIT Kharagpur",
+    detail: "B.S. (Hons.) / M.S. in Economics, Department of Economics",
     period: "Expected 2028",
+    badge: "IIT",
+    logo: "/logos/iitkgp.svg",
   },
-  { school: "Decent School, Kota", detail: "Class XII (CBSE) · 95.4%", period: "2022" },
-  { school: "Lucknow Public School", detail: "Class X (CBSE) · 95.6%", period: "2020" },
+  { school: "Decent School, Kota", detail: "Class XII (CBSE), 95.4%", period: "2022", badge: "DS" },
+  { school: "Lucknow Public School", detail: "Class X (CBSE), 95.6%", period: "2020", badge: "LPS" },
 ];
 
+/** Written casually on purpose. `tag` is the small label on each row. */
 export const awards = [
-  "Selected for a research project under Prof. M. Abdar at the University of Queensland (Global Rank 42) via the Foreign Training Program.",
-  "Selected for the IIT Kharagpur Platinum Jubilee Outbound Scheme, covering all expenses at Pennsylvania State University.",
-  "Bronze Medal, Inter-Hall Illumination Competition, Radhakrishnan Hall.",
-  "Participated in NSO Health & Fitness for 2 years.",
-  "3rd School Rank in 1st Round and State Rank 39 in 2nd Round of the National Mathematics Indian Talent Competition.",
+  {
+    tag: "Research",
+    title: "Picked for a research project at UQ",
+    text: "Got selected to work with Prof. M. Abdar at the University of Queensland (ranked 42 globally) through IIT Kharagpur's Foreign Training Program.",
+  },
+  {
+    tag: "Scholarship",
+    title: "Platinum Jubilee Outbound Scheme",
+    text: "IIT Kharagpur covered all my expenses for the research stay at Penn State.",
+  },
+  {
+    tag: "Hall",
+    title: "Bronze at Inter-Hall Illumination",
+    text: "Won bronze with my fellow boarders from Radhakrishnan Hall.",
+  },
+  {
+    tag: "Fitness",
+    title: "NSO Health & Fitness",
+    text: "Took part for 2 years, helping spread healthy habits and well-being.",
+  },
+  {
+    tag: "Maths",
+    title: "National Mathematics Indian Talent Competition",
+    text: "Came 3rd in my school in round 1, then 39th in the state in round 2.",
+  },
 ];
 
 export const rotatingWords = ["reliable", "verifiable", "secure", "private"];
