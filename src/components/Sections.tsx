@@ -1,0 +1,98 @@
+import { Section } from "./Section";
+import { Entry } from "./Entry";
+import { awards, competitions, education, experience, leadership, profile, projects, skills } from "@/data/portfolio";
+
+export function Experience() {
+  return (
+    <Section id="experience" title="Experience">
+      {experience.map((r) => (
+        <Entry key={r.title + r.org + r.period} title={r.title} subtitle={r.org + (r.place ? `, ${r.place}` : "")} period={r.period} objective={r.objective} points={r.points} links={r.links} />
+      ))}
+    </Section>
+  );
+}
+
+export function Projects() {
+  return (
+    <Section id="projects" title="Projects">
+      {projects.map((p) => (
+        <Entry key={p.name} title={p.name} period={p.period} objective={p.objective} points={p.points} stack={p.stack} links={p.links} />
+      ))}
+    </Section>
+  );
+}
+
+export function Competitions() {
+  return (
+    <Section id="competitions" title="Competitions">
+      {competitions.map((p) => (
+        <Entry key={p.name} title={p.name} period={p.period} objective={p.objective} points={p.points} />
+      ))}
+    </Section>
+  );
+}
+
+export function Leadership() {
+  return (
+    <Section id="leadership" title="Leadership">
+      {leadership.map((r) => (
+        <Entry key={r.title} title={r.title} subtitle={r.org} period={r.period} objective={r.objective} points={r.points} />
+      ))}
+    </Section>
+  );
+}
+
+export function Skills() {
+  return (
+    <Section id="skills" title="Skills">
+      <dl className="space-y-8">
+        {skills.map((g) => (
+          <div key={g.group}>
+            <dt className="text-sm text-subtle">{g.group}</dt>
+            <dd className="mt-2 max-w-[68ch] leading-relaxed text-muted">{g.items.join(", ")}</dd>
+          </div>
+        ))}
+      </dl>
+    </Section>
+  );
+}
+
+export function Education() {
+  return (
+    <Section id="education" title="Education & awards">
+      <ul className="space-y-6">
+        {education.map((e) => (
+          <li key={e.school} className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+            <div>
+              <p className="font-medium">{e.school}</p>
+              <p className="text-muted">{e.detail}</p>
+              {"note" in e && e.note && <p className="text-muted">{e.note}</p>}
+            </div>
+            <p className="tnum shrink-0 font-mono text-sm text-subtle">{e.period}</p>
+          </li>
+        ))}
+      </ul>
+      <ul className="mt-12 max-w-[68ch] space-y-2.5 text-[0.95rem] leading-relaxed text-muted">
+        {awards.map((a) => (
+          <li key={a} className="relative pl-5 before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2.5 before:bg-subtle">
+            {a}
+          </li>
+        ))}
+      </ul>
+    </Section>
+  );
+}
+
+export function Contact() {
+  return (
+    <Section id="contact" title="Contact">
+      <p className="max-w-[52ch] text-xl text-muted">Open to research collaborations and internships.</p>
+      <ul className="mt-6 space-y-2">
+        <li><a className="text-accent underline decoration-accent/40 hover:decoration-accent" href={`mailto:${profile.email}`}>{profile.email}</a></li>
+        <li><a className="text-muted hover:text-foreground" href={`tel:${profile.phone.replace(/[^+\d]/g, "")}`}>{profile.phone}</a></li>
+        <li><a className="text-muted hover:text-foreground" href={profile.links.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></li>
+        <li><a className="text-muted hover:text-foreground" href={profile.links.github} target="_blank" rel="noreferrer">GitHub ↗</a></li>
+      </ul>
+    </Section>
+  );
+}
