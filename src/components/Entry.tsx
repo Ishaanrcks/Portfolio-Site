@@ -27,7 +27,7 @@ export function Entry({
         <p className="tnum shrink-0 font-mono text-sm text-subtle">{period}</p>
       </header>
       {objective && <p className="mt-3 max-w-[68ch] text-pretty text-foreground/90">{objective}</p>}
-      <ul className="mt-4 max-w-[68ch] space-y-2.5 text-[0.95rem] leading-relaxed text-muted">
+      <ul hidden={points.length === 0} className="mt-4 max-w-[68ch] space-y-2.5 text-[0.95rem] leading-relaxed text-muted">
         {points.map((p) => (
           <li key={p} className="relative pl-5 before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2.5 before:bg-subtle">
             {p}
@@ -39,11 +39,17 @@ export function Entry({
       )}
       {links && links.length > 0 && (
         <p className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="text-accent underline decoration-accent/40 hover:decoration-accent">
-              {l.label} ↗
-            </a>
-          ))}
+          {links.map((l) =>
+            l.href ? (
+              <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="text-accent underline decoration-accent/40 hover:decoration-accent">
+                {l.label} ↗
+              </a>
+            ) : (
+              <span key={l.label} aria-disabled="true" title="Link coming soon" className="text-subtle">
+                {l.label} <span className="text-xs">(link soon)</span>
+              </span>
+            ),
+          )}
         </p>
       )}
     </article>

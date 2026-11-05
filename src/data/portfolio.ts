@@ -37,7 +37,7 @@ export const profile = {
   links: {
     github: "https://github.com/Ishaanrcks",
     linkedin: "https://www.linkedin.com/in/", // TODO: add your profile slug, e.g. /in/your-handle
-    resume: "", // TODO: put resume.pdf in /public and set "/resume.pdf"
+    resume: "/resume.pdf", // TODO: drop your resume at public/resume.pdf
   },
   photo: "", // TODO: put image in /public and set e.g. "/me.jpg" (shown in hero when set)
 };
@@ -100,7 +100,7 @@ export const experience: Role[] = [
     title: "Research Intern",
     org: "Deakin University",
     place: "Australia",
-    period: "May 2025 – Jul 2025, Sept 2025 – Present", // TODO: confirm second period
+    period: "May 2025 – Jul 2025",
     objective:
       "Safeguard privacy in agent-to-agent communication, under Professor Ye Zhu.",
     points: [
@@ -128,19 +128,6 @@ export const experience: Role[] = [
 
 export const projects: Project[] = [
   {
-    name: "Voice-Native Hospital Call Agent (DataForge)",
-    period: "Sept 2026",
-    objective:
-      "A low-latency voice agent that handles live hospital calls end to end, with clean barge-in and graceful failure recovery.",
-    points: [
-      "Built a LangGraph voice agent with 24 tools over a 29-table SQLite DB, logging per-turn latency, tool calls and end-of-call summaries.",
-      "Engineered turn-taking with Silero VAD, an adaptive noise gate and token-fenced barge-in that cancels stale LLM and tool-call output.",
-      "Designed failure handling so calls never go silent: on LLM failures, apologise, save context for same-day callback and end gracefully.",
-      "Deployed a demo on AWS EC2 (FastAPI WebSocket, Caddy HTTPS), a browser-callable bridge designed to switch to Twilio later.",
-    ],
-    stack: ["LangGraph", "Silero VAD", "FastAPI", "SQLite", "AWS EC2"],
-  },
-  {
     name: "VeriRAG",
     period: "Oct 2026",
     objective:
@@ -152,6 +139,20 @@ export const projects: Project[] = [
       "Evaluated on MMLongBench-Doc with a stratified 59-question set: zero hallucinations across answered queries, with abstention on unanswerable ones.",
     ],
     stack: ["LangGraph", "BM25", "DeBERTa NLI", "PyMuPDF"],
+    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
+  },
+  {
+    name: "Kaggle: CommonLit Evaluate Student Summaries",
+    period: "Dec 2025",
+    objective:
+      "A hybrid NLP pipeline that scores student summaries on content accuracy and wording quality.",
+    points: [
+      "Engineered lexical, spelling, length, source-overlap and readability features; LightGBM baseline at 0.577 / 0.590 MCRMSE.",
+      "Benchmarked BERT, RoBERTa and DeBERTa-v3 with prompt-grouped CV; DeBERTa-v3 (pre-trained on Feedback-ELL) scored best.",
+      "Fine-tuned DeBERTa with mean pooling of the last 4 hidden layers, cutting MCRMSE to 0.46; stacked out-of-fold predictions with features in LightGBM, reaching 0.493 / 0.508.",
+    ],
+    stack: ["LightGBM", "DeBERTa-v3"],
+    links: [{ label: "GitHub", href: "" }], // TODO: add href
   },
   {
     name: "Multi-Agent Academic Research System",
@@ -164,6 +165,7 @@ export const projects: Project[] = [
       "Integrated the ArXiv API and a local ChromaDB vector database to pull facts from research papers and user documents.",
     ],
     stack: ["LangGraph", "Llama-3.3", "Gemini 1.5", "ChromaDB", "ArXiv API"],
+    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
   },
   {
     name: "Hospital Emergency Room Forecasting",
@@ -176,6 +178,7 @@ export const projects: Project[] = [
       "Architected LSTM and GRU models with a 30-day lookback window alongside SARIMA baselines, yielding a test MAPE of 21.1%.",
     ],
     stack: ["XGBoost", "LightGBM", "LSTM / GRU", "SARIMA"],
+    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
   },
   {
     name: "Predicting State of Manufacturing Units",
@@ -188,6 +191,7 @@ export const projects: Project[] = [
       "Ensembled the best models for stability, reaching a test accuracy of 0.872.",
     ],
     stack: ["RNN / CNN / LSTM", "AutoGluon"],
+    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
   },
   // TODO: add more projects by copying this template:
   // {
@@ -202,6 +206,19 @@ export const projects: Project[] = [
 
 export const competitions: Project[] = [
   {
+    name: "Voice-Native Hospital Call Agent (DataForge)",
+    period: "Sept 2026",
+    objective:
+      "A low-latency voice agent that handles live hospital calls end to end, with clean barge-in and graceful failure recovery.",
+    points: [
+      "Built a LangGraph voice agent with 24 tools over a 29-table SQLite DB, logging per-turn latency, tool calls and end-of-call summaries.",
+      "Engineered turn-taking with Silero VAD, an adaptive noise gate and token-fenced barge-in that cancels stale LLM and tool-call output.",
+      "Designed failure handling so calls never go silent: on LLM failures, apologise, save context for same-day callback and end gracefully.",
+      "Deployed a demo on AWS EC2 (FastAPI WebSocket, Caddy HTTPS), a browser-callable bridge designed to switch to Twilio later.",
+    ],
+    links: [{ label: "GitHub", href: "" }, { label: "Demo", href: "" }], // TODO: add hrefs
+  },
+  {
     name: "General Championship Data Analytics",
     period: "Gold, Feb 2026 · Silver, Mar 2025",
     objective: "Technology Students Gymkhana, IIT Kharagpur.",
@@ -212,6 +229,7 @@ export const competitions: Project[] = [
       "Silver (Mar 2025): optimized ElectroMart's marketing budget with EDA, sentiment analysis and ROI modeling; used XGBoost/MMM (MIDAS-ARMA, H.O.V.A.) to track revenue lag and boost gains by 19.8%.",
       "Built Django and Next.js dashboards with KPI visuals and budget sliders, plus a natural-language query agent for EDA insights.",
     ],
+    links: [{ label: "GitHub", href: "" }], // TODO: add href
   },
   {
     name: "Amazon ML Challenge 2025",
@@ -224,17 +242,7 @@ export const competitions: Project[] = [
       "Integrated CLIP / SigLIP 2-Giant image embeddings with cross-attention to align images and text; SigLIP's sigmoid loss removed batch-wise scale drift.",
       "Designed dual-path cross-attention fusion with a 3-layer FFN head trained directly on SMAPE, reaching 48.67% / 53.24%.",
     ],
-  },
-  {
-    name: "Kaggle: CommonLit Evaluate Student Summaries",
-    period: "Dec 2025",
-    objective:
-      "A hybrid NLP pipeline that scores student summaries on content accuracy and wording quality.",
-    points: [
-      "Engineered lexical, spelling, length, source-overlap and readability features; LightGBM baseline at 0.577 / 0.590 MCRMSE.",
-      "Benchmarked BERT, RoBERTa and DeBERTa-v3 with prompt-grouped CV; DeBERTa-v3 (pre-trained on Feedback-ELL) scored best.",
-      "Fine-tuned DeBERTa with mean pooling of the last 4 hidden layers, cutting MCRMSE to 0.46; stacked out-of-fold predictions with features in LightGBM, reaching 0.493 / 0.508.",
-    ],
+    links: [{ label: "GitHub", href: "" }], // TODO: add href
   },
   {
     name: "Kaggle: NLP with Disaster Tweets",
@@ -246,6 +254,7 @@ export const competitions: Project[] = [
       "Improved preprocessing via GloVe and FastText vocabulary-coverage analysis of out-of-vocabulary words.",
       "Fine-tuned a BERT-based model with Adam and cross-entropy loss, reaching 81.14% / 82.42% accuracy.",
     ],
+    links: [{ label: "GitHub", href: "" }], // TODO: add href
   },
   {
     name: "Intrahall Data Analytics Competition",
@@ -257,10 +266,18 @@ export const competitions: Project[] = [
       "Used Random Forest and Decision Trees for feature importance, identifying sensors with significant variance in the final seconds.",
       "Designed LSTM, GRU and hybrid models and visualized sensor-wise variance over time for model compression.",
     ],
+    links: [{ label: "GitHub", href: "" }], // TODO: add href
   },
 ];
 
 export const leadership: Role[] = [
+  {
+    title: "Campus Director",
+    org: "Hult Prize, IIT Kharagpur",
+    period: "TODO: add dates",
+    objective: "TODO: one line on what you led as Campus Director.",
+    points: [],
+  },
   {
     title: "Web Coordinator",
     org: "Students' International Relations Cell, IIT Kharagpur",
@@ -303,8 +320,7 @@ export const education = [
   {
     school: "Indian Institute of Technology Kharagpur",
     detail: "B.S. (Hons.) / M.S. in Economics",
-    period: "Expected 2027/2028", // TODO: confirm graduation year
-    note: "", // TODO: CGPA — your CV versions list 8.54, 7.63 and 8.23; pick the current one
+    period: "Expected 2028",
   },
   { school: "Decent School, Kota", detail: "Class XII (CBSE) · 95.4%", period: "2022" },
   { school: "Lucknow Public School", detail: "Class X (CBSE) · 95.6%", period: "2020" },

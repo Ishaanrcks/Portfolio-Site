@@ -66,7 +66,6 @@ export function Education() {
             <div>
               <p className="font-medium">{e.school}</p>
               <p className="text-muted">{e.detail}</p>
-              {"note" in e && e.note && <p className="text-muted">{e.note}</p>}
             </div>
             <p className="tnum shrink-0 font-mono text-sm text-subtle">{e.period}</p>
           </li>

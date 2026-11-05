@@ -12,12 +12,12 @@ npm run build
 All content lives in `src/data/portfolio.ts`. Components only render it.
 
 ### TODO (needs you)
-- `profile.links.linkedin`: add your profile slug
+- `profile.links.linkedin`: set your full profile URL (the one provided ended at `/in/`)
 - `profile.photo`: drop an image in `/public`, set e.g. `"/me.jpg"` (hero shows it automatically)
-- `profile.links.resume`: add `/public/resume.pdf` and set `"/resume.pdf"`
-- `education[0].note`: CGPA (your CVs list 8.54, 7.63, 8.23) and confirm graduation year (2027 vs 2028)
-- Deakin period: confirm "Sept 2025 – Present"
-- Project `links` / `stack`: add GitHub and demo links; copy the commented template at the bottom of `projects`
+- Resume: put your PDF at `public/resume.pdf` (the Resume button already points there)
+- Project / competition `links`: set each `href` (empty ones render as "link soon")
+- Hult Prize Campus Director: fill in dates and description in `leadership`
+- Add more projects by copying the commented template at the bottom of `projects`
 - `metadataBase` in `src/app/layout.tsx` once you have a domain
 
 ## Design
